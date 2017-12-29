@@ -12,11 +12,17 @@ import SceneKit
 
 class GameViewController: UIViewController {
 
+    var softBox: SCNBox!
+    var softBoxNode: SCNNode!
+    var player: SCNCylinder!
+    var playerNode: SCNNode!
+    var scene: SCNScene!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // create a new scene
-        let scene = SCNScene(named: "art.scnassets/ship.scn")!
+        scene = SCNScene()
         
         // create and add a camera to the scene
         let cameraNode = SCNNode()
@@ -24,103 +30,91 @@ class GameViewController: UIViewController {
         scene.rootNode.addChildNode(cameraNode)
         
         // place the camera
-        cameraNode.position = SCNVector3(x: 0, y: 0, z: 15)
-        
-        // create and add a light to the scene
-        let lightNode = SCNNode()
-        lightNode.light = SCNLight()
-        lightNode.light!.type = .omni
-        lightNode.position = SCNVector3(x: 0, y: 10, z: 10)
-        scene.rootNode.addChildNode(lightNode)
-        
-        // create and add an ambient light to the scene
-        let ambientLightNode = SCNNode()
-        ambientLightNode.light = SCNLight()
-        ambientLightNode.light!.type = .ambient
-        ambientLightNode.light!.color = UIColor.darkGray
-        scene.rootNode.addChildNode(ambientLightNode)
-        
-        // retrieve the ship node
-        let ship = scene.rootNode.childNode(withName: "ship", recursively: true)!
-        
-        // animate the 3d object
-        ship.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 2, z: 0, duration: 1)))
+        cameraNode.position = SCNVector3(x: -10, y: 10, z: 10)
+        cameraNode.look(at: SCNVector3(x: 0, y: 0, z: 0))
         
         // retrieve the SCNView
         let scnView = self.view as! SCNView
         
         // set the scene to the view
         scnView.scene = scene
+    
+        // use default light
         
-        // allows the user to manipulate the camera
-        scnView.allowsCameraControl = true
-        
-        // show statistics such as fps and timing information
-        scnView.showsStatistics = true
-        
-        // configure the view
         scnView.backgroundColor = UIColor.black
         
-        // add a tap gesture recognizer
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
-        scnView.addGestureRecognizer(tapGesture)
-    }
-    
-    @objc
-    func handleTap(_ gestureRecognize: UIGestureRecognizer) {
-        // retrieve the SCNView
-        let scnView = self.view as! SCNView
+        scene.rootNode.castsShadow = true
         
-        // check what nodes are tapped
-        let p = gestureRecognize.location(in: scnView)
-        let hitResults = scnView.hitTest(p, options: [:])
-        // check that we clicked on at least one object
-        if hitResults.count > 0 {
-            // retrieved the first clicked object
-            let result = hitResults[0]
-            
-            // get its material
-            let material = result.node.geometry!.firstMaterial!
-            
-            // highlight it
-            SCNTransaction.begin()
-            SCNTransaction.animationDuration = 0.5
-            
-            // on completion - unhighlight
-            SCNTransaction.completionBlock = {
-                SCNTransaction.begin()
-                SCNTransaction.animationDuration = 0.5
-                
-                material.emission.contents = UIColor.black
-                
-                SCNTransaction.commit()
-            }
-            
-            material.emission.contents = UIColor.red
-            
-            SCNTransaction.commit()
-        }
+        createLight()
+        createFloor()
+        createSoftBox()
+        createPlayer()
     }
     
-    override var shouldAutorotate: Bool {
-        return true
+    func createLight() {
+        // Main light
+        let mainLightNode = SCNNode()
+        mainLightNode.light = SCNLight()
+        mainLightNode.light?.type = .directional
+        mainLightNode.light?.castsShadow = true
+        mainLightNode.light?.color = UIColor.white
+        mainLightNode.rotation = SCNVector4.init(1, -0.4, 0, -Float.pi / 3.7)
+        scene.rootNode.addChildNode(mainLightNode)
+        
+    
+        
+        let ambientLightNode = SCNNode()
+        ambientLightNode.light = SCNLight()
+        ambientLightNode.light?.type = .ambient
+        ambientLightNode.light?.color = UIColor.white
+        scene.rootNode.addChildNode(ambientLightNode)
     }
     
-    override var prefersStatusBarHidden: Bool {
-        return true
+    func createFloor() {
+        let material = SCNMaterial()
+        material.diffuse.contents = UIColor.gray.cgColor
+        
+        let floor = SCNPlane.init(width: 50, height: 50)
+        floor.materials = [material]
+        let floorNode = SCNNode.init(geometry: floor)
+        floorNode.transform = SCNMatrix4MakeRotation(-Float.pi / 2.0, 1, 0, 0)
+        self.scene.rootNode.addChildNode(floorNode)
+        floorNode.castsShadow = false
     }
     
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            return .allButUpsideDown
-        } else {
-            return .all
-        }
+    func createSoftBox() {
+        let material = SCNMaterial()
+        material.diffuse.contents = UIColor.red.cgColor
+        self.softBox = SCNBox.init(width: 2, height: 1.4, length: 2, chamferRadius: 0)
+        self.softBox.materials = [material]
+        self.softBoxNode = SCNNode.init(geometry: self.softBox)
+        self.softBoxNode.pivot = SCNMatrix4MakeTranslation(0, -0.7, 0)
+        self.scene.rootNode.addChildNode(self.softBoxNode)
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Release any cached data, images, etc that aren't in use.
+    func createPlayer() {
+        let material = SCNMaterial()
+        material.diffuse.contents = UIColor.green.cgColor
+        self.player = SCNCylinder.init(radius: 0.2, height: 0.6)
+        self.player.materials = [material]
+        self.playerNode = SCNNode.init(geometry: self.player)
+        self.playerNode.pivot = SCNMatrix4MakeTranslation(0, -0.3, 0)
+        self.playerNode.position = SCNVector3.init(0, 1.4, 0)
+        self.scene.rootNode.addChildNode(self.playerNode)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        SCNTransaction.animationDuration = 0.3
+        self.softBoxNode.scale = SCNVector3.init(1, 0.3, 1)
+        self.playerNode.position = SCNVector3.init(0, 0.42, 0)
+        self.playerNode.scale = SCNVector3.init(1, 0.5, 1)
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        SCNTransaction.animationDuration = 0.3
+        self.softBoxNode.scale = SCNVector3.init(1, 1, 1)
+        self.playerNode.position = SCNVector3.init(0, 1.4, 0)
+        self.playerNode.scale = SCNVector3.init(1, 1, 1)
     }
 
 }
