@@ -9,6 +9,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="SHPinscher-Regular.otf">
+            <string>SHPinscher-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Game View Controller-->
         <scene sceneID="tXr-a1-R10">
@@ -19,16 +24,16 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="33" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="si0-Ky-md3">
-                                <rect key="frame" x="26" y="60" width="42.5" height="38.5"/>
-                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="32"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="172" y="60" width="31.5" height="48"/>
+                                <fontDescription key="fontDescription" name="SHPinscher-Regular" family="SH Pinscher" pointSize="40"/>
+                                <color key="textColor" red="0.1779057837379765" green="0.1779057837379765" blue="0.1779057837379765" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="si0-Ky-md3" firstAttribute="leading" secondItem="Pfr-rR-eAU" secondAttribute="leading" constant="26" id="Y4O-RL-A7T"/>
                             <constraint firstItem="si0-Ky-md3" firstAttribute="top" secondItem="Pfr-rR-eAU" secondAttribute="top" constant="40" id="lCw-Hh-QnI"/>
+                            <constraint firstItem="si0-Ky-md3" firstAttribute="centerX" secondItem="iLz-F3-DmL" secondAttribute="centerX" id="pUc-WE-ze9"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Pfr-rR-eAU"/>
                     </view>
