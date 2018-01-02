@@ -28,6 +28,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
 
     var game: Game!
     @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet weak var newRecordLabel: UILabel!
     @IBOutlet weak var gameStartPanel: UIView!
     @IBOutlet weak var gameOverPanel: UIView!
     
@@ -36,6 +37,8 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        gameStartPanel.isHidden = false
+        gameOverPanel.isHidden = true
         // create a new scene
         scene = SCNScene()
 
@@ -53,8 +56,8 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
 
         scene.rootNode.castsShadow = true
         scnView.rendersContinuously = true
-        scnView.preferredFramesPerSecond = 120
-        scnView.showsStatistics = true
+        scnView.preferredFramesPerSecond = 60
+//        scnView.showsStatistics = true
 
         game = Game(scene: scene)
 
@@ -62,28 +65,20 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if game.gameState == .ready || game.gameState == .over {
-            if !isGameStarted {
-                game.startGame()
-                isGameStarted = true
-            } else {
-                game.restartGame()
-            }
-            game.gameState = .running
-        } else if game.gameState == .running {
+        if game.gameState == .running {
             game.inputController.begin()
         }
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        game.playerController.jump()
-        game.inputController.end()
+        if game.gameState == .running {
+            game.playerController.jump()
+            game.inputController.end()
+        }
     }
-
 
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
         if game.gameState == .running {
-
             var deltaTime = 0.0
             if lastUpdateTime < 0 {
                 lastUpdateTime = time
@@ -97,14 +92,38 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
             DispatchQueue.main.async {
                 self.scoreLabel.text = "\(self.game.score)"
             }
+        } else if game.gameState == .over {
+            self.game.gameState = .preparing
+            DispatchQueue.main.async {
+                self.gameStartPanel.isHidden = true
+                self.gameOverPanel.isHidden = false
+                if self.game.scoreController.isNewRecord(newScore: self.game.score) {
+                    self.newRecordLabel.isHidden = false
+                } else {
+                    self.newRecordLabel.isHidden = true
+                }
+                self.game.scoreController.saveScore(newScore: self.game.score)
+            }
         }
     }
     
     @IBAction func startGameButtonTapped(button: UIButton) {
+        gameStartPanel.isHidden = true
+        gameOverPanel.isHidden = true
         
+        if game.gameState == .ready {
+            game.startGame()
+            game.gameState = .running
+        }
     }
     
     @IBAction func continueGameButtonTapped(button: UIButton) {
+        gameStartPanel.isHidden = true
+        gameOverPanel.isHidden = true
         
+        if game.gameState == .preparing {
+            game.restartGame()
+            game.gameState = .running
+        }
     }
 }

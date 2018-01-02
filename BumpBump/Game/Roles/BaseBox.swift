@@ -27,14 +27,13 @@ class BaseBox: GameObject {
     func setupGeometryAndNode() {
         let material = SCNMaterial()
         material.diffuse.contents = UIColor.randomColor().cgColor
-        material.lightingModel = .blinn
-        material.shininess = 0.1
 
-        self.geometry = SCNBox.init(width: 1.2, height: 0.8, length: 1.2, chamferRadius: 0)
+        let boxSize: CGFloat = CGFloat(arc4random()) / CGFloat(UInt32.max) * 0.4 + 0.4
+        self.geometry = SCNBox.init(width: boxSize, height: 0.4, length: boxSize, chamferRadius: 0)
         self.geometry.materials = [material]
 
         self.scnNode = SCNNode.init(geometry: self.geometry)
-        self.scnNode.pivot = SCNMatrix4MakeTranslation(0, -0.4, 0)
+        self.scnNode.pivot = SCNMatrix4MakeTranslation(0, -0.2, 0)
         self.scnNode.position = self.boxPosition
     }
 

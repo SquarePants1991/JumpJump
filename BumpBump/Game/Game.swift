@@ -24,6 +24,7 @@ class Game {
     var playerController: PlayerController!
     var cameraController: CameraController!
     var inputController: PressInputController!
+    var scoreController: ScoreController = ScoreController()
 
     init(scene: SCNScene) {
         self.scene = scene
@@ -40,9 +41,11 @@ class Game {
     func setupCamera() {
         self.cameraNode = SCNNode()
         self.cameraNode.camera = SCNCamera()
+        // FIXME: 此属性只能iOS11使用
+        self.cameraNode.camera!.fieldOfView = 90
         scene.rootNode.addChildNode(self.cameraNode)
 
-        cameraNode.position = SCNVector3(x: -4, y: 7, z: 4)
+        cameraNode.position = SCNVector3(x: -2.3, y: 4.0, z: 3)
         cameraNode.look(at: SCNVector3(x: 0, y: 0, z: 0))
     }
 
@@ -135,19 +138,21 @@ extension Game {
         mainLightNode.light = SCNLight()
         mainLightNode.light?.type = .directional
         mainLightNode.light?.castsShadow = true
-        mainLightNode.light?.color = UIColor.white
+        mainLightNode.light?.color = UIColor.init(white: 1.0, alpha: 1.0)
         // 深入了解一下不同的Shadow模式
         // FIXME: 有自阴影的问题
-        mainLightNode.light?.shadowMode = .deferred
-        mainLightNode.light?.shadowColor = UIColor.init(white: 0.3, alpha: 0.3).cgColor
-        mainLightNode.rotation = SCNVector4.init(1, -0.4, 0, -Float.pi / 3.7)
+        #if !(arch(i386) || arch(x86_64))
+            mainLightNode.light?.shadowMode = .deferred
+        #endif
+        mainLightNode.light?.shadowColor = UIColor.init(white: 0.0, alpha: 0.15).cgColor
+        mainLightNode.rotation = SCNVector4.init(1, -0.4, 0, -Float.pi / 3.3)
         scene.rootNode.addChildNode(mainLightNode)
 
 
         let ambientLightNode = SCNNode()
         ambientLightNode.light = SCNLight()
         ambientLightNode.light?.type = .ambient
-        ambientLightNode.light?.color = UIColor.init(white: 1.0, alpha: 1.0).cgColor
+        ambientLightNode.light?.color = UIColor.init(white: 0.6, alpha: 1.0).cgColor
         scene.rootNode.addChildNode(ambientLightNode)
     }
 

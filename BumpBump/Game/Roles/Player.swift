@@ -50,13 +50,17 @@ class Player: GameObject {
     func setupGeometryAndNode() {
         let material = SCNMaterial()
         material.diffuse.contents = UIColor.orange.cgColor
-
-        let geometry = SCNCone.init(topRadius: 0.15, bottomRadius: 0.0, height: 0.7)
+        material.lightingModel = .blinn
+        material.ambient.contents = UIColor.orange.cgColor
+        
+//        let geometry = SCNCone.init(topRadius: 0.15, bottomRadius: 0.0, height: 0.7)
+        // 根据我家老婆大人的指示，把它换成球
+        let geometry = SCNSphere.init(radius: 0.15)
         geometry.materials = [material]
 
 
         scnNode = SCNNode.init(geometry: geometry)
-        scnNode.pivot = SCNMatrix4MakeTranslation(0, -0.35, 0)
+        scnNode.pivot = SCNMatrix4MakeTranslation(0, -0.15, 0)
         scnNode.castsShadow = true
 
         if let particleSystem = SCNParticleSystem.init(named: "prepare", inDirectory: "./") {
@@ -128,8 +132,8 @@ class Player: GameObject {
                     jumpingRotation = 180.0 * -verticalVelocity / beginJumpVelocity + 180.0
                 }
                 let rotateAxis = jumpRotateAxis()
-                // TODO: 增加非线性的动画方案
-                scnNode.rotation = SCNVector4.init(rotateAxis.x, rotateAxis.y, rotateAxis.z, jumpingRotation / 180.0 * Float.pi)
+                // TODO: 增加非线性的动画方案， 现在形状是球，所以别转了。。。
+//                scnNode.rotation = SCNVector4.init(rotateAxis.x, rotateAxis.y, rotateAxis.z, jumpingRotation / 180.0 * Float.pi)
                 // TODO: 怕自己看不懂，分步骤解答，用于弹跳过程中的伸缩计算，先伸展，然后回到初始状态
                 var scaleFactor = 1.0 - jumpingRotation / 180.0 // -1 ~ 1
                 scaleFactor = abs(scaleFactor) // 1 ~ 0 ~ 1

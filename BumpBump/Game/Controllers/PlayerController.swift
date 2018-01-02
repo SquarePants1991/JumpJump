@@ -27,7 +27,7 @@ class PlayerController: ControllerProtocol {
 
     func jump() {
         let newGroundY = self.boxController.nextBox?.topY() ?? 0
-        self.player.jump(beginVelocity: (vertical: 10, horizontal: 10.0 * inputController.inputFactor), forward: jumpForwardVector(), groundY: newGroundY)
+        self.player.jump(beginVelocity: (vertical: 10, horizontal: 8.0 * inputController.inputFactor), forward: jumpForwardVector(), groundY: newGroundY)
     }
 
     func update(timeSinceLastUpdate: TimeInterval) {
@@ -36,7 +36,7 @@ class PlayerController: ControllerProtocol {
         // TODO: 将input改为触发式，优化此处逻辑
         if player.isOnGround {
             let scaleFactor: Float = 1.0 - inputController.inputFactor * 0.5
-            player.rootNode().scale = SCNVector3.init(1, scaleFactor, 1)
+            player.rootNode().scale = SCNVector3.init(1 + inputController.inputFactor * 0.5, scaleFactor, 1 + inputController.inputFactor * 0.5)
             var originPos = player.rootNode().position
             originPos.y = player.groundY * scaleFactor
             player.rootNode().position = originPos

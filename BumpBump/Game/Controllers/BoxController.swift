@@ -58,8 +58,8 @@ class BoxController: ControllerProtocol {
     private func addBox(direction: SCNVector3? = nil) -> BaseBox? {
         if let parentNode = scene?.rootNode {
             let newDirectionIndex = Float(arc4random()) / Float(UInt32.max) * Float(nextBoxDirections.count)
-            var newDirection = direction ?? nextBoxDirections[Int(newDirectionIndex)]
-            let distance: Float = Float(arc4random()) / Float(UInt32.max) * 2.2 + 1.6
+            let newDirection = direction ?? nextBoxDirections[Int(newDirectionIndex)]
+            let distance: Float = Float(arc4random()) / Float(UInt32.max) * 1.4 + 1.2
             let newBox = BaseBox.init(geometry: nil, position: putPosition)
             putPosition += newDirection * distance
             newBox.addToNode(baseNode: parentNode)
