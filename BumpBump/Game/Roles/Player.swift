@@ -55,12 +55,12 @@ class Player: GameObject {
         
 //        let geometry = SCNCone.init(topRadius: 0.15, bottomRadius: 0.0, height: 0.7)
         // 根据我家老婆大人的指示，把它换成球
-        let geometry = SCNSphere.init(radius: 0.15)
+        let geometry = SCNSphere.init(radius: 0.1)
         geometry.materials = [material]
 
 
         scnNode = SCNNode.init(geometry: geometry)
-        scnNode.pivot = SCNMatrix4MakeTranslation(0, -0.15, 0)
+        scnNode.pivot = SCNMatrix4MakeTranslation(0, -0.1, 0)
         scnNode.castsShadow = true
 
         if let particleSystem = SCNParticleSystem.init(named: "prepare", inDirectory: "./") {

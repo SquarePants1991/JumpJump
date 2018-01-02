@@ -42,10 +42,10 @@ class Game {
         self.cameraNode = SCNNode()
         self.cameraNode.camera = SCNCamera()
         // FIXME: 此属性只能iOS11使用
-        self.cameraNode.camera!.fieldOfView = 90
+        self.cameraNode.camera!.fieldOfView = 45
         scene.rootNode.addChildNode(self.cameraNode)
 
-        cameraNode.position = SCNVector3(x: -2.3, y: 4.0, z: 3)
+        cameraNode.position = SCNVector3(x: -2.3, y: 4.3, z: 3.2)
         cameraNode.look(at: SCNVector3(x: 0, y: 0, z: 0))
     }
 
