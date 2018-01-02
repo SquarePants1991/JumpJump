@@ -10,7 +10,6 @@
 		3D75A82F1FF9653A00B93F3C /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D75A82D1FF9653A00B93F3C /* star.png */; };
 		3D75A8321FF965B400B93F3C /* prepare.scnp in Resources */ = {isa = PBXBuildFile; fileRef = 3D75A8301FF965B400B93F3C /* prepare.scnp */; };
 		3D75A8331FF965B400B93F3C /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D75A8311FF965B400B93F3C /* spark.png */; };
-		3D75A8351FFA4E1500B93F3C /* SHPinscher-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3D75A8341FFA4E1400B93F3C /* SHPinscher-Regular.otf */; };
 		8EE2F5291FF5FF4400085BCF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE2F5281FF5FF4400085BCF /* AppDelegate.swift */; };
 		8EE2F52B1FF5FF4400085BCF /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EE2F52A1FF5FF4400085BCF /* art.scnassets */; };
 		8EE2F52D1FF5FF4400085BCF /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE2F52C1FF5FF4400085BCF /* GameViewController.swift */; };
@@ -18,6 +17,7 @@
 		8EE2F5321FF5FF4400085BCF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EE2F5311FF5FF4400085BCF /* Assets.xcassets */; };
 		8EE2F5351FF5FF4400085BCF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EE2F5331FF5FF4400085BCF /* LaunchScreen.storyboard */; };
 		8EE2F5401FF5FF4500085BCF /* BumpBumpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE2F53F1FF5FF4500085BCF /* BumpBumpTests.swift */; };
+		8EE2F54B1FFB4E6600085BCF /* upheavtt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8EE2F54A1FFB4E6500085BCF /* upheavtt.ttf */; };
 		E642C2D1ABD4ACB6207710A8 /* BoxController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E642C536B41CF0BDAA19DE2F /* BoxController.swift */; };
 		E642C35AC971E968970A704D /* PressInputController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E642CCF5B59CA7ACB64B32A5 /* PressInputController.swift */; };
 		E642C3D22431159CDEAABB74 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = E642C5042BEA9EFB56615623 /* Player.swift */; };
@@ -46,7 +46,6 @@
 		3D75A82D1FF9653A00B93F3C /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
 		3D75A8301FF965B400B93F3C /* prepare.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = prepare.scnp; sourceTree = "<group>"; };
 		3D75A8311FF965B400B93F3C /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
-		3D75A8341FFA4E1400B93F3C /* SHPinscher-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SHPinscher-Regular.otf"; sourceTree = "<group>"; };
 		8EE2F5251FF5FF4400085BCF /* BumpBump.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BumpBump.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EE2F5281FF5FF4400085BCF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8EE2F52A1FF5FF4400085BCF /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -58,6 +57,7 @@
 		8EE2F53B1FF5FF4500085BCF /* BumpBumpTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BumpBumpTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EE2F53F1FF5FF4500085BCF /* BumpBumpTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BumpBumpTests.swift; sourceTree = "<group>"; };
 		8EE2F5411FF5FF4500085BCF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8EE2F54A1FFB4E6500085BCF /* upheavtt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = upheavtt.ttf; sourceTree = "<group>"; };
 		E642C2BA063ECF17D1A905DE /* SCNOperators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCNOperators.swift; sourceTree = "<group>"; };
 		E642C5042BEA9EFB56615623 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		E642C536B41CF0BDAA19DE2F /* BoxController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxController.swift; sourceTree = "<group>"; };
@@ -93,7 +93,7 @@
 		3D75A82B1FF9651800B93F3C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				3D75A8341FFA4E1400B93F3C /* SHPinscher-Regular.otf */,
+				8EE2F54A1FFB4E6500085BCF /* upheavtt.ttf */,
 				3D75A82D1FF9653A00B93F3C /* star.png */,
 				3D75A8301FF965B400B93F3C /* prepare.scnp */,
 				3D75A8311FF965B400B93F3C /* spark.png */,
@@ -273,9 +273,9 @@
 				8EE2F52B1FF5FF4400085BCF /* art.scnassets in Resources */,
 				8EE2F5351FF5FF4400085BCF /* LaunchScreen.storyboard in Resources */,
 				8EE2F5321FF5FF4400085BCF /* Assets.xcassets in Resources */,
-				3D75A8351FFA4E1500B93F3C /* SHPinscher-Regular.otf in Resources */,
 				3D75A8331FF965B400B93F3C /* spark.png in Resources */,
 				8EE2F5301FF5FF4400085BCF /* Main.storyboard in Resources */,
+				8EE2F54B1FFB4E6600085BCF /* upheavtt.ttf in Resources */,
 				3D75A82F1FF9653A00B93F3C /* star.png in Resources */,
 				3D75A8321FF965B400B93F3C /* prepare.scnp in Resources */,
 			);

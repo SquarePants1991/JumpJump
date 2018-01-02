@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="SHPinscher-Regular.otf">
-            <string>SHPinscher-Regular</string>
+        <array key="upheavtt.ttf">
+            <string>UpheavalTT-BRK-</string>
         </array>
     </customFonts>
     <scenes>
@@ -23,17 +23,66 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="33" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="si0-Ky-md3">
-                                <rect key="frame" x="172" y="60" width="31.5" height="48"/>
-                                <fontDescription key="fontDescription" name="SHPinscher-Regular" family="SH Pinscher" pointSize="40"/>
-                                <color key="textColor" red="0.1779057837379765" green="0.1779057837379765" blue="0.1779057837379765" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X1a-Yg-7s9" userLabel="GameStartPanel">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FX6-bg-eoe">
+                                        <rect key="frame" x="138.5" y="539" width="98" height="48"/>
+                                        <fontDescription key="fontDescription" name="UpheavalTT-BRK-" family="Upheaval TT (BRK)" pointSize="40"/>
+                                        <state key="normal" title="Play">
+                                            <color key="titleColor" red="0.33971668903009733" green="0.638473316766762" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="FX6-bg-eoe" firstAttribute="centerX" secondItem="X1a-Yg-7s9" secondAttribute="centerX" id="J56-aE-nlh"/>
+                                    <constraint firstAttribute="bottom" secondItem="FX6-bg-eoe" secondAttribute="bottom" constant="80" id="wbX-XK-FKi"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="92r-LM-ibt" userLabel="GameFinishPanel">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fSg-ay-z5H">
+                                        <rect key="frame" x="93.5" y="539" width="188" height="48"/>
+                                        <fontDescription key="fontDescription" name="UpheavalTT-BRK-" family="Upheaval TT (BRK)" pointSize="40"/>
+                                        <state key="normal" title="continue">
+                                            <color key="titleColor" red="0.33971668900000002" green="0.63847331679999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        </state>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game Over" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y9r-xV-W18">
+                                        <rect key="frame" x="69.5" y="314" width="236.5" height="40.5"/>
+                                        <fontDescription key="fontDescription" name="UpheavalTT-BRK-" family="Upheaval TT (BRK)" pointSize="45"/>
+                                        <color key="textColor" red="1" green="0.58456556140000004" blue="0.077717656829999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="y9r-xV-W18" firstAttribute="centerX" secondItem="92r-LM-ibt" secondAttribute="centerX" id="3BM-uO-9J8"/>
+                                    <constraint firstItem="y9r-xV-W18" firstAttribute="centerY" secondItem="92r-LM-ibt" secondAttribute="centerY" id="JFW-th-Idg"/>
+                                    <constraint firstAttribute="bottom" secondItem="fSg-ay-z5H" secondAttribute="bottom" constant="80" id="Yjk-Of-Vhu"/>
+                                    <constraint firstItem="fSg-ay-z5H" firstAttribute="centerX" secondItem="92r-LM-ibt" secondAttribute="centerX" id="pH0-SS-URl"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1234567" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="si0-Ky-md3">
+                                <rect key="frame" x="97" y="44" width="181" height="42.5"/>
+                                <fontDescription key="fontDescription" name="UpheavalTT-BRK-" family="Upheaval TT (BRK)" pointSize="47"/>
+                                <color key="textColor" red="1" green="0.58456556142005023" blue="0.077717656834076609" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="si0-Ky-md3" firstAttribute="top" secondItem="Pfr-rR-eAU" secondAttribute="top" constant="40" id="lCw-Hh-QnI"/>
+                            <constraint firstItem="Pfr-rR-eAU" firstAttribute="trailing" secondItem="X1a-Yg-7s9" secondAttribute="trailing" id="2CN-LM-HjP"/>
+                            <constraint firstItem="Pfr-rR-eAU" firstAttribute="bottom" secondItem="X1a-Yg-7s9" secondAttribute="bottom" id="7Si-rC-LUC"/>
+                            <constraint firstItem="92r-LM-ibt" firstAttribute="trailing" secondItem="Pfr-rR-eAU" secondAttribute="trailing" id="Ckk-iA-ZiB"/>
+                            <constraint firstItem="92r-LM-ibt" firstAttribute="top" secondItem="iLz-F3-DmL" secondAttribute="top" id="b83-7G-k2V"/>
+                            <constraint firstItem="si0-Ky-md3" firstAttribute="top" secondItem="Pfr-rR-eAU" secondAttribute="top" constant="24" id="lCw-Hh-QnI"/>
+                            <constraint firstItem="X1a-Yg-7s9" firstAttribute="top" secondItem="iLz-F3-DmL" secondAttribute="top" id="nPp-5v-ViJ"/>
                             <constraint firstItem="si0-Ky-md3" firstAttribute="centerX" secondItem="iLz-F3-DmL" secondAttribute="centerX" id="pUc-WE-ze9"/>
+                            <constraint firstItem="92r-LM-ibt" firstAttribute="bottom" secondItem="Pfr-rR-eAU" secondAttribute="bottom" id="tDb-eT-7Aq"/>
+                            <constraint firstItem="92r-LM-ibt" firstAttribute="leading" secondItem="Pfr-rR-eAU" secondAttribute="leading" id="v3h-F4-8BG"/>
+                            <constraint firstItem="X1a-Yg-7s9" firstAttribute="leading" secondItem="Pfr-rR-eAU" secondAttribute="leading" id="yOu-8G-MPa"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Pfr-rR-eAU"/>
                     </view>

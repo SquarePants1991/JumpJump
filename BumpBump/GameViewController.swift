@@ -28,6 +28,9 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
 
     var game: Game!
     @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet weak var gameStartPanel: UIView!
+    @IBOutlet weak var gameOverPanel: UIView!
+    
     var isGameStarted: Bool = false
 
     override func viewDidLoad() {
@@ -95,5 +98,13 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
                 self.scoreLabel.text = "\(self.game.score)"
             }
         }
+    }
+    
+    @IBAction func startGameButtonTapped(button: UIButton) {
+        
+    }
+    
+    @IBAction func continueGameButtonTapped(button: UIButton) {
+        
     }
 }
