@@ -59,7 +59,7 @@ class GameViewController: UIViewController, SCNSceneRendererDelegate {
         scnView.preferredFramesPerSecond = 60
 //        scnView.showsStatistics = true
 
-        game = Game(scene: scene)
+        game = Game.init(scene: scene, aspectRatio: Float(self.view.frame.size.width /  self.view.frame.size.height))
 
         scoreLabel.text = "\(game.score)"
     }

@@ -12,7 +12,6 @@
 		3D75A8331FF965B400B93F3C /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D75A8311FF965B400B93F3C /* spark.png */; };
 		3D75A8371FFBC9F000B93F3C /* ScoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D75A8361FFBC9F000B93F3C /* ScoreController.swift */; };
 		8EE2F5291FF5FF4400085BCF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE2F5281FF5FF4400085BCF /* AppDelegate.swift */; };
-		8EE2F52B1FF5FF4400085BCF /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EE2F52A1FF5FF4400085BCF /* art.scnassets */; };
 		8EE2F52D1FF5FF4400085BCF /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE2F52C1FF5FF4400085BCF /* GameViewController.swift */; };
 		8EE2F5301FF5FF4400085BCF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EE2F52E1FF5FF4400085BCF /* Main.storyboard */; };
 		8EE2F5321FF5FF4400085BCF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EE2F5311FF5FF4400085BCF /* Assets.xcassets */; };
@@ -50,7 +49,6 @@
 		3D75A8361FFBC9F000B93F3C /* ScoreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreController.swift; sourceTree = "<group>"; };
 		8EE2F5251FF5FF4400085BCF /* BumpBump.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BumpBump.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EE2F5281FF5FF4400085BCF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8EE2F52A1FF5FF4400085BCF /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		8EE2F52C1FF5FF4400085BCF /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		8EE2F52F1FF5FF4400085BCF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8EE2F5311FF5FF4400085BCF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -103,6 +101,13 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		3D75A8381FFD21AF00B93F3C /* Props */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Props;
+			sourceTree = "<group>";
+		};
 		8EE2F51C1FF5FF4400085BCF = {
 			isa = PBXGroup;
 			children = (
@@ -126,7 +131,6 @@
 			children = (
 				3D75A82B1FF9651800B93F3C /* Resources */,
 				8EE2F5281FF5FF4400085BCF /* AppDelegate.swift */,
-				8EE2F52A1FF5FF4400085BCF /* art.scnassets */,
 				8EE2F52C1FF5FF4400085BCF /* GameViewController.swift */,
 				8EE2F52E1FF5FF4400085BCF /* Main.storyboard */,
 				8EE2F5311FF5FF4400085BCF /* Assets.xcassets */,
@@ -160,6 +164,7 @@
 		E642C50F1D5B96809AB77C23 /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				3D75A8381FFD21AF00B93F3C /* Props */,
 				E642C36BFCA586CC4D5C4AFF /* Utils */,
 				E642CB3431073F0F1E46DBB4 /* Roles */,
 				E642C6FA31B7C858DC92FEAC /* Controllers */,
@@ -273,7 +278,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8EE2F52B1FF5FF4400085BCF /* art.scnassets in Resources */,
 				8EE2F5351FF5FF4400085BCF /* LaunchScreen.storyboard in Resources */,
 				8EE2F5321FF5FF4400085BCF /* Assets.xcassets in Resources */,
 				3D75A8331FF965B400B93F3C /* spark.png in Resources */,
@@ -468,6 +472,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P48344HVQL;
 				INFOPLIST_FILE = BumpBump/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.ocean.BumpBump;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -483,6 +488,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P48344HVQL;
 				INFOPLIST_FILE = BumpBump/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.ocean.BumpBump;
 				PRODUCT_NAME = "$(TARGET_NAME)";

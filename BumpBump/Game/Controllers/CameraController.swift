@@ -32,15 +32,17 @@ class CameraController: ControllerProtocol {
     func setupTarget(player: Player, boxManager: BoxController) {
         self.player = player
         self.boxManager = boxManager
-        if let player = self.player, let boxManager = self.boxManager {
+        if let _ = self.player, let boxManager = self.boxManager {
             let targetPosition = (boxManager.currentBox!.boxPosition + boxManager.nextBox!.boxPosition) * 0.5
             self.relativePosition = self.cameraNode.position - targetPosition
-            self.cameraNode.look(at: targetPosition, up: SCNVector3.init(0, 1, 0), localFront: SCNNode.localFront)
+            let cameraNodePosition = self.cameraNode.position
+            let lookAtMatrix = GLKMatrix4MakeLookAt(cameraNodePosition.x, cameraNodePosition.y, cameraNodePosition.z, targetPosition.x, targetPosition.y, targetPosition.z, 0, 1, 0)
+            cameraNode.transform = SCNMatrix4FromGLKMatrix4(GLKMatrix4Invert(lookAtMatrix, nil))
         }
     }
 
     func update(timeSinceLastUpdate: TimeInterval) {
-        if let player = self.player, let boxManager = self.boxManager {
+        if let _ = self.player, let boxManager = self.boxManager {
             switch self.state {
             case .animateCameraToTarget(let beginPosition, let endPosition):
                 animationElapsedTime += timeSinceLastUpdate
@@ -49,8 +51,9 @@ class CameraController: ControllerProtocol {
                     position = endPosition
                     self.state = .waitingTargetMove
                 }
-                self.cameraNode.look(at: position, up: SCNVector3.init(0, 1, 0), localFront: SCNNode.localFront)
-                self.cameraNode.position = position + self.relativePosition
+                let cameraNodePosition = position + self.relativePosition
+                let lookAtMatrix = GLKMatrix4MakeLookAt(cameraNodePosition.x, cameraNodePosition.y, cameraNodePosition.z, position.x, position.y, position.z, 0, 1, 0)
+                cameraNode.transform = SCNMatrix4FromGLKMatrix4(GLKMatrix4Invert(lookAtMatrix, nil))
             default:
                 break
             }
@@ -58,7 +61,7 @@ class CameraController: ControllerProtocol {
     }
 
     func updateCamera() {
-        if let player = self.player, let boxManager = self.boxManager {
+        if let _ = self.player, let boxManager = self.boxManager {
             let beginPosition = self.cameraNode.position - self.relativePosition
             let targetPosition = (boxManager.currentBox!.boxPosition + boxManager.nextBox!.boxPosition) * 0.5
             self.state = .animateCameraToTarget(beginPosition: beginPosition, endPosition: targetPosition)
@@ -67,10 +70,11 @@ class CameraController: ControllerProtocol {
     }
 
     func reset() {
-        if let player = self.player, let boxManager = self.boxManager {
+        if let _ = self.player, let boxManager = self.boxManager {
             let position = (boxManager.currentBox!.boxPosition + boxManager.nextBox!.boxPosition) * 0.5
-            self.cameraNode.position = position + self.relativePosition
-            self.cameraNode.look(at: position, up: SCNVector3.init(0, 1, 0), localFront: SCNNode.localFront)
+            let cameraNodePosition = position + self.relativePosition
+            let lookAtMatrix = GLKMatrix4MakeLookAt(cameraNodePosition.x, cameraNodePosition.y, cameraNodePosition.z, position.x, position.y, position.z, 0, 1, 0)
+            cameraNode.transform = SCNMatrix4FromGLKMatrix4(GLKMatrix4Invert(lookAtMatrix, nil))
         }
     }
 

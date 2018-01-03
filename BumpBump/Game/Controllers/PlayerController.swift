@@ -27,7 +27,7 @@ class PlayerController: ControllerProtocol {
 
     func jump() {
         let newGroundY = self.boxController.nextBox?.topY() ?? 0
-        self.player.jump(beginVelocity: (vertical: 10, horizontal: 8.0 * inputController.inputFactor), forward: jumpForwardVector(), groundY: newGroundY)
+        self.player.jump(beginVelocity: (vertical: 7, horizontal: 8.0 * inputController.inputFactor), forward: jumpForwardVector(), groundY: newGroundY)
     }
 
     func update(timeSinceLastUpdate: TimeInterval) {

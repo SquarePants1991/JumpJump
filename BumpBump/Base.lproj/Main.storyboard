@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
     <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -20,6 +20,10 @@
         <scene sceneID="tXr-a1-R10">
             <objects>
                 <viewController id="BV1-FR-VrT" customClass="GameViewController" customModule="BumpBump" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oDh-Ul-bIa"/>
+                        <viewControllerLayoutGuide type="bottom" id="hBG-4C-NNm"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="iLz-F3-DmL" customClass="SCNView">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -97,18 +101,17 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Pfr-rR-eAU" firstAttribute="trailing" secondItem="X1a-Yg-7s9" secondAttribute="trailing" id="2CN-LM-HjP"/>
-                            <constraint firstItem="92r-LM-ibt" firstAttribute="top" secondItem="Pfr-rR-eAU" secondAttribute="top" id="77U-Ac-WZQ"/>
-                            <constraint firstItem="Pfr-rR-eAU" firstAttribute="bottom" secondItem="X1a-Yg-7s9" secondAttribute="bottom" id="7Si-rC-LUC"/>
-                            <constraint firstItem="92r-LM-ibt" firstAttribute="trailing" secondItem="Pfr-rR-eAU" secondAttribute="trailing" id="Ckk-iA-ZiB"/>
-                            <constraint firstItem="si0-Ky-md3" firstAttribute="top" secondItem="Pfr-rR-eAU" secondAttribute="top" constant="24" id="lCw-Hh-QnI"/>
+                            <constraint firstAttribute="trailing" secondItem="X1a-Yg-7s9" secondAttribute="trailing" id="2CN-LM-HjP"/>
+                            <constraint firstItem="92r-LM-ibt" firstAttribute="top" secondItem="oDh-Ul-bIa" secondAttribute="bottom" id="77U-Ac-WZQ"/>
+                            <constraint firstItem="hBG-4C-NNm" firstAttribute="top" secondItem="X1a-Yg-7s9" secondAttribute="bottom" id="7Si-rC-LUC"/>
+                            <constraint firstItem="92r-LM-ibt" firstAttribute="trailing" secondItem="iLz-F3-DmL" secondAttribute="trailing" id="Ckk-iA-ZiB"/>
+                            <constraint firstItem="si0-Ky-md3" firstAttribute="top" secondItem="oDh-Ul-bIa" secondAttribute="bottom" constant="24" id="lCw-Hh-QnI"/>
                             <constraint firstItem="X1a-Yg-7s9" firstAttribute="top" secondItem="iLz-F3-DmL" secondAttribute="top" id="nPp-5v-ViJ"/>
                             <constraint firstItem="si0-Ky-md3" firstAttribute="centerX" secondItem="iLz-F3-DmL" secondAttribute="centerX" id="pUc-WE-ze9"/>
-                            <constraint firstItem="92r-LM-ibt" firstAttribute="bottom" secondItem="Pfr-rR-eAU" secondAttribute="bottom" id="tDb-eT-7Aq"/>
-                            <constraint firstItem="92r-LM-ibt" firstAttribute="leading" secondItem="Pfr-rR-eAU" secondAttribute="leading" id="v3h-F4-8BG"/>
-                            <constraint firstItem="X1a-Yg-7s9" firstAttribute="leading" secondItem="Pfr-rR-eAU" secondAttribute="leading" id="yOu-8G-MPa"/>
+                            <constraint firstItem="92r-LM-ibt" firstAttribute="bottom" secondItem="hBG-4C-NNm" secondAttribute="top" id="tDb-eT-7Aq"/>
+                            <constraint firstItem="92r-LM-ibt" firstAttribute="leading" secondItem="iLz-F3-DmL" secondAttribute="leading" id="v3h-F4-8BG"/>
+                            <constraint firstItem="X1a-Yg-7s9" firstAttribute="leading" secondItem="iLz-F3-DmL" secondAttribute="leading" id="yOu-8G-MPa"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="Pfr-rR-eAU"/>
                     </view>
                     <connections>
                         <outlet property="gameOverPanel" destination="92r-LM-ibt" id="p4S-oR-zws"/>

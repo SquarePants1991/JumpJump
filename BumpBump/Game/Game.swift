@@ -8,6 +8,7 @@ import UIKit
 
 class Game {
     var scene: SCNScene!
+    var aspectRatio: Float!
 
     var cameraNode: SCNNode!
 
@@ -26,8 +27,9 @@ class Game {
     var inputController: PressInputController!
     var scoreController: ScoreController = ScoreController()
 
-    init(scene: SCNScene) {
+    init(scene: SCNScene, aspectRatio: Float) {
         self.scene = scene
+        self.aspectRatio = aspectRatio
 
         setupCamera()
         setupMainScene()
@@ -37,16 +39,22 @@ class Game {
         setupCameraController()
         setupInputController()
     }
+    
+    func syncAspectRatio(_ aspectRatio: Float) {
+        self.aspectRatio = aspectRatio
+        
+    }
 
     func setupCamera() {
         self.cameraNode = SCNNode()
         self.cameraNode.camera = SCNCamera()
-        // FIXME: 此属性只能iOS11使用
-        self.cameraNode.camera!.fieldOfView = 45
+        let perspectiveMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(38), self.aspectRatio, 0.1, 1000)
+        self.cameraNode.camera!.projectionTransform = SCNMatrix4FromGLKMatrix4(perspectiveMatrix)
         scene.rootNode.addChildNode(self.cameraNode)
 
-        cameraNode.position = SCNVector3(x: -2.3, y: 4.3, z: 3.2)
-        cameraNode.look(at: SCNVector3(x: 0, y: 0, z: 0))
+        let lookAtMatrix = GLKMatrix4MakeLookAt(-2.6, 3.8, 3.2, 0, 0, 0, 0, 1, 0)
+        let cameraTransform = GLKMatrix4Invert(lookAtMatrix, nil)
+        cameraNode.transform = SCNMatrix4FromGLKMatrix4(cameraTransform)
     }
 
     func startGame() {
@@ -122,7 +130,7 @@ extension Game {
         material.diffuse.contents = UIColor.white.cgColor
         material.lightingModel = .constant
         material.writesToDepthBuffer = true
-        material.colorBufferWriteMask = []
+//        material.colorBufferWriteMask
 
         let floor = SCNPlane.init(width: 20, height: 20)
         floor.materials = [material]

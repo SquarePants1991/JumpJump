@@ -9,14 +9,12 @@ class BaseBox: GameObject {
     var geometry: SCNGeometry!
     var scnNode: SCNNode!
     var boxPosition: SCNVector3 = SCNVector3.init(0, 0, 0)
-
-    convenience init() {
-        self.init(geometry: nil, position: nil)
-    }
-
-    init(geometry: SCNGeometry?, position: SCNVector3?) {
+    var boxSize: Float = 0
+    
+    init(geometry: SCNGeometry? = nil, position: SCNVector3? = nil, size: Float? = nil) {
         self.boxPosition = position ?? SCNVector3.init(0, 0, 0)
-
+        self.boxSize = size ?? Float(arc4random()) / Float(UInt32.max) * 0.4 + 0.4
+        
         if geometry == nil {
             setupGeometryAndNode()
         } else {
@@ -28,12 +26,11 @@ class BaseBox: GameObject {
         let material = SCNMaterial()
         material.diffuse.contents = UIColor.randomColor().cgColor
 
-        let boxSize: CGFloat = CGFloat(arc4random()) / CGFloat(UInt32.max) * 0.4 + 0.4
-        self.geometry = SCNBox.init(width: boxSize, height: 0.4, length: boxSize, chamferRadius: 0)
+        self.geometry = SCNBox.init(width: CGFloat(self.boxSize), height: 0.3, length: CGFloat(self.boxSize), chamferRadius: 0)
         self.geometry.materials = [material]
 
         self.scnNode = SCNNode.init(geometry: self.geometry)
-        self.scnNode.pivot = SCNMatrix4MakeTranslation(0, -0.2, 0)
+        self.scnNode.pivot = SCNMatrix4MakeTranslation(0, -0.15, 0)
         self.scnNode.position = self.boxPosition
     }
 
